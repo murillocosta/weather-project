@@ -18,3 +18,14 @@
   font-style: italic;
   text-shadow: 3px 3px 3px rgba(16, 23, 48, 0.3);
 }
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 5rem;
+  height: 5rem;
+}
