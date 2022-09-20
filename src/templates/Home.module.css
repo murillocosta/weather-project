@@ -1,0 +1,58 @@
+.main {
+  text-align: center;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input label {
+  font-weight: bold;
+  color: var(--main-color);
+  font-size: 1.4rem;
+}
+
+.input input {
+  width: 15rem;
+  margin: 1rem;
+  border-radius: 15px;
+  height: 2rem;
+  outline: none;
+  margin-left: -1rem;
+  border: 1px solid rgba(16, 23, 48, 0.5);
+  text-align: center;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.input label input {
+  position: relative;
+}
+
+.input input:focus,
+.input input:hover {
+  border: 1px solid var(--main-color);
+}
+
+.input label svg {
+  position: relative;
+  z-index: 30;
+  left: 3rem;
+  top: 0.3em;
+}
+
+.main button {
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 5px;
+  background-color: var(--main-color);
+  color: white;
+  outline: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.main button:hover,
+.main button:focus {
+  box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5);
+}

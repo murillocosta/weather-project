@@ -1,0 +1,26 @@
+.Card {
+  width: 40rem;
+  height: 25rem;
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.Card ul {
+  list-style: none;
+}
+
+.Card h1 {
+  color: var(--main-color);
+}
+
+.Card aside ul li {
+  color: var(--main-color);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.Card aside ul li span {
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  font-weight: normal;
+}
