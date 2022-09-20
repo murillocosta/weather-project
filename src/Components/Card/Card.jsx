@@ -6,15 +6,16 @@ import humidityIcon from '../../assets/humidity.png';
 import celsiusIcon from '../../assets/celsius.png';
 import feelsLikeIcon from '../../assets/feels-like.png';
 
-import {
-  WiDirectionUpRight,
-  WiDirectionUp,
-  WiDirectionRight,
-  WiDirectionDownRight,
-  WiDirectionDown,
-  WiDirectionLeft,
-  WiDirectionUpLeft,
-} from 'react-icons/wi';
+import nubladoImg from '../../assets/nublado.png';
+import nuvensDispersasImg from '../../assets/nuvens-dispersas.png';
+import ceuLimpoImg from '../../assets/ceu-limpo.png';
+import poucasNuvensImg from '../../assets/poucas-nuvens.png';
+import mistImg from '../../assets/mist.png';
+import neveImg from '../../assets/neve.png';
+import rainImg from '../../assets/rain.png';
+import tempestadeImg from '../../assets/tempestade.png';
+import chuvaModeradaImg from '../../assets/chuva-moderada.png';
+
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 
 const Card = ({
@@ -27,6 +28,7 @@ const Card = ({
   sunrise,
   sunset,
   weatherIconId,
+  city,
 }) => {
   const simpleDateOptions = {
     showDate: '0',
@@ -39,68 +41,95 @@ const Card = ({
     );
   };
 
-  const windDirection = deg => {
-    if (deg < 5 && deg >= 355)
-      return (
-        <WiDirectionUp
-          title="Direção do vento: Norte"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 5 && deg < 85)
-      return (
-        <WiDirectionUpRight
-          title="Direção do vento: Nordeste"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 85 && deg < 95)
-      return (
-        <WiDirectionRight
-          title="Direção do vento: Leste"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 95 && deg < 175)
-      return (
-        <WiDirectionDownRight
-          title="Direção do vento: Sudeste"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 175 && deg < 185)
-      return (
-        <WiDirectionDown
-          title="Direção do vento: Sul"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 185 && deg < 265)
-      return (
-        <WiDirectionUpRight
-          title="Direção do vento: Sudoeste"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 265 && deg < 275)
-      return (
-        <WiDirectionLeft
-          title="Direção do vento: Oeste"
-          className={styles.direction}
-        />
-      );
-    if (deg >= 270 && deg < 355)
-      return (
-        <WiDirectionUpLeft
-          title="Direção do vento: Noroeste"
-          className={styles.direction}
-        />
-      );
+  const renderWeatherImg = weatherDescription => {
+    switch (weatherDescription) {
+      case 'nublado':
+        return nubladoImg;
+      case 'nuvens dispersas':
+        return nuvensDispersasImg;
+      case 'algumas nuvens':
+        return poucasNuvensImg;
+      case 'céu limpo':
+        return ceuLimpoImg;
+      case 'nevoa':
+        return mistImg;
+      case 'neve':
+        return neveImg;
+      case 'chuva':
+        return rainImg;
+      case 'tempestade':
+        return tempestadeImg;
+      case 'chuva moderada':
+        return chuvaModeradaImg;
+      default:
+        break;
+    }
   };
+
+  //TODO
+  //
+  // const windDirection = deg => {
+  //   if (deg < 5 && deg >= 355)
+  //     return (
+  //       <WiDirectionUp
+  //         title="Direção do vento: Norte"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 5 && deg < 85)
+  //     return (
+  //       <WiDirectionUpRight
+  //         title="Direção do vento: Nordeste"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 85 && deg < 95)
+  //     return (
+  //       <WiDirectionRight
+  //         title="Direção do vento: Leste"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 95 && deg < 175)
+  //     return (
+  //       <WiDirectionDownRight
+  //         title="Direção do vento: Sudeste"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 175 && deg < 185)
+  //     return (
+  //       <WiDirectionDown
+  //         title="Direção do vento: Sul"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 185 && deg < 265)
+  //     return (
+  //       <WiDirectionUpRight
+  //         title="Direção do vento: Sudoeste"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 265 && deg < 275)
+  //     return (
+  //       <WiDirectionLeft
+  //         title="Direção do vento: Oeste"
+  //         className={styles.direction}
+  //       />
+  //     );
+  //   if (deg >= 270 && deg < 355)
+  //     return (
+  //       <WiDirectionUpLeft
+  //         title="Direção do vento: Noroeste"
+  //         className={styles.direction}
+  //       />
+  //     );
+  // };
 
   return (
     <section className={styles.Card}>
-      <h1>Previsão do dia:</h1>
+      <h1>Agora em {city}:</h1>
       <div className={styles.temp}>
         <div>
           <p>
@@ -141,18 +170,15 @@ const Card = ({
       </div>
 
       <div className={styles.desc}>
-        <ul>
-          <li>
-            Descrição: <span>{weatherCap(weatherDescription)}</span>{' '}
-            <span>
-              <img
-                src={`http://openweathermap.org/img/wn/${weatherIconId}@2x.png `}
-                alt={weatherDescription}
-                title={weatherCap(weatherDescription)}
-              />
-            </span>
-          </li>
-        </ul>
+        <p>
+          <span>{weatherCap(weatherDescription)}</span>
+        </p>
+
+        <img
+          src={renderWeatherImg(weatherDescription)}
+          alt={weatherDescription}
+          title={weatherCap(weatherDescription)}
+        />
       </div>
 
       <section className={styles.vento}>

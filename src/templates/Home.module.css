@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .input label {
@@ -18,7 +19,7 @@
 
 .input input {
   width: 15rem;
-  margin: 1rem;
+  margin: 1rem ;
   border-radius: 15px;
   height: 2rem;
   outline: none;
@@ -63,4 +64,13 @@
   /* box-shadow: 3px 3px 5px rgba(16, 53, 91, 1); */
   /* box-shadow: 1px 1px 1px 1px rgba(17, 17, 17, 0.5); */
   background: rgb(177, 180, 187);
+}
+
+.main button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.error {
+  color: rgb(218, 18, 18);
 }

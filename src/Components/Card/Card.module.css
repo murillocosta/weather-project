@@ -3,7 +3,7 @@
   height: 25rem;
   border: 1px solid rgba(16, 23, 48, 0.7);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 2rem;
   box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5),
     inset 3px 3px 5px rgba(0, 0, 0, 0.5);
   background-color: whitesmoke;
@@ -22,7 +22,7 @@
 
 .Card h1 {
   color: var(--main-color);
-  text-align: start;
+  text-align: center;
   grid-area: titulo;
 }
 .Card ul li,
@@ -39,6 +39,9 @@
 
 .temp {
   grid-area: temp;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .desc {
