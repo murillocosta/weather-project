@@ -59,6 +59,7 @@ const Home = () => {
           windSpeed={resultadoCidade.wind.speed}
           sunrise={resultadoCidade.sys.sunrise}
           sunset={resultadoCidade.sys.sunset}
+          weatherIconId={resultadoCidade.weather[0].icon}
         />
       )}
     </main>

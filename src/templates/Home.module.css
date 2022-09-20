@@ -22,7 +22,8 @@
   outline: none;
   margin-left: -1rem;
   border: 1px solid rgba(16, 23, 48, 0.5);
-  text-align: center;
+  font-size: 1rem;
+  text-indent: 2rem;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -38,7 +39,7 @@
 .input label svg {
   position: relative;
   z-index: 30;
-  left: 3rem;
+  left: 1rem;
   top: 0.3em;
 }
 
@@ -54,5 +55,6 @@
 }
 .main button:hover,
 .main button:focus {
-  box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5);
+  box-shadow: 3px 3px 5px rgba(10, 23, 48, 0.5);
+  background-color: rgb(26, 59, 119);
 }
