@@ -1,8 +1,12 @@
 import styles from './Card.module.css';
+import sunriseIcon from '../../assets/sunrise.png';
+import sunsetIcon from '../../assets/sunset.png';
+import windIcon from '../../assets/wind.png';
+import humidityIcon from '../../assets/humidity.png';
+import celsiusIcon from '../../assets/celsius.png';
+import feelsLikeIcon from '../../assets/feels-like.png';
 
-import { BsSunset, BsSunrise } from 'react-icons/bs';
 import {
-  WiStrongWind,
   WiDirectionUpRight,
   WiDirectionUp,
   WiDirectionRight,
@@ -10,7 +14,6 @@ import {
   WiDirectionDown,
   WiDirectionLeft,
   WiDirectionUpLeft,
-  WiHumidity,
 } from 'react-icons/wi';
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 
@@ -99,22 +102,44 @@ const Card = ({
     <section className={styles.Card}>
       <h1>Previsão do dia:</h1>
       <div className={styles.temp}>
-        <ul>
-          <li>
-            Temperatura: <span>{Math.round(temp)}° C</span>
-          </li>
-          <li>
-            Humidade:{' '}
-            <span>
-              {humidity}%{' '}
-              <WiHumidity className={styles.icon} title="Humidade relativa" />
-            </span>
-          </li>
-          <li>
-            Sensação Térmica: <span>{Math.round(feelsLike)}° C</span>
-          </li>
-        </ul>
+        <div>
+          <p>
+            Temperatura:{' '}
+            <img
+              src={celsiusIcon}
+              alt="Temperatura"
+              title="Temperatura"
+              className={styles.icon}
+            />{' '}
+            <span>{Math.round(temp)}° C</span>
+          </p>
+        </div>
+
+        <div>
+          <p>
+            Umidade:{' '}
+            <img
+              src={humidityIcon}
+              alt="Umidade Relativa"
+              title="Umidade Relativa"
+              className={styles.icon}
+            />
+            <span>{humidity}% </span>
+          </p>
+        </div>
+
+        <div>
+          Sensação Térmica:{' '}
+          <img
+            src={feelsLikeIcon}
+            alt="Sensação Térmica"
+            title="Sensação Térmica"
+            className={styles.icon}
+          />{' '}
+          <span>{Math.round(feelsLike)}° C</span>
+        </div>
       </div>
+
       <div className={styles.desc}>
         <ul>
           <li>
@@ -129,31 +154,38 @@ const Card = ({
           </li>
         </ul>
       </div>
-      <div className={styles.vento}>
-        <ul>
-          <li>
-            Vento:{' '}
-            <WiStrongWind title="Velocidade do Vento" className={styles.icon} />{' '}
-            <span>{windSpeed} m/s</span> <span>{windDirection(windDeg)}</span>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.sol}>
-        <ul>
-          <li>
-            <BsSunrise title="Nascer do Sol" className={styles.icon} />{' '}
-            <span>
-              <SimpleDateTime {...simpleDateOptions}>{sunrise}</SimpleDateTime>
-            </span>
-          </li>
-          <li>
-            <BsSunset title="Pôr do Sol" className={styles.icon} />{' '}
-            <span>
-              <SimpleDateTime {...simpleDateOptions}>{sunset}</SimpleDateTime>
-            </span>
-          </li>
-        </ul>
-      </div>
+
+      <section className={styles.vento}>
+        <img src={windIcon} alt="Vento" title="Vento" />
+
+        <p>{windSpeed} m/s</p>
+      </section>
+
+      <section className={styles.sol}>
+        <div>
+          <img
+            src={sunriseIcon}
+            alt="Nascer do Sol"
+            title="Nascer do Sol"
+            className={styles.sunIcons}
+          />
+          <p>
+            <SimpleDateTime {...simpleDateOptions}>{sunrise}</SimpleDateTime>
+          </p>
+        </div>
+
+        <div>
+          <img
+            src={sunsetIcon}
+            alt="Pôr do Sol"
+            title="Pôr do Sol"
+            className={styles.sunIcons}
+          />
+          <p>
+            <SimpleDateTime {...simpleDateOptions}>{sunset}</SimpleDateTime>
+          </p>
+        </div>
+      </section>
     </section>
   );
 };

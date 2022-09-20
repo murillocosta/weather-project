@@ -4,8 +4,9 @@
   border: 1px solid rgba(16, 23, 48, 0.7);
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5);
-  background-color: rgb(120, 131, 230);
+  box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5),
+    inset 3px 3px 5px rgba(0, 0, 0, 0.5);
+  background-color: whitesmoke;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 4rem 1fr 6rem;
@@ -33,7 +34,6 @@
 .Card ul li span,
 .sol ul li span {
   color: var(--secondary-color);
-  font-size: 1.3rem;
   font-weight: normal;
 }
 
@@ -52,9 +52,16 @@
   justify-content: center;
 }
 
+.vento img {
+  margin: 0 0.5rem;
+  width: 50px;
+  height: 50px;
+}
+
 .icon,
 .direction {
-  font-size: 2rem;
+  width: 28px;
+  height: 28px;
   margin-bottom: -7px;
 }
 
@@ -64,12 +71,9 @@
   margin-left: -200px;
 }
 
-.vento ul li svg {
-  margin-left: 2px;
-}
-
 .sol {
   grid-area: sol;
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +82,19 @@
   text-align: center;
 }
 
-.sol ul li svg {
-  color: orangered;
+.sunIcons {
+  width: 50px;
+  height: 50px;
+  margin-right: 0.5rem;
+}
+
+.sol div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.sol div p {
+  margin-top: 1rem;
 }

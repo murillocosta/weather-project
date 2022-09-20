@@ -19,8 +19,8 @@ const Header = () => {
           <BsCloudSun />
         </IconContext.Provider> */}
         <div className={styles.logoContainer}>
-          <Logo className={styles.logo} />
           <Link to="/">
+            <Logo className={styles.logo} />
             <h1>Vai Chuvê?</h1>
           </Link>
         </div>

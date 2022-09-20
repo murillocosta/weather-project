@@ -19,7 +19,7 @@
   text-shadow: 3px 3px 3px rgba(16, 23, 48, 0.3);
 }
 
-.logoContainer {
+.logoContainer a {
   display: flex;
   align-items: center;
   justify-content: center;

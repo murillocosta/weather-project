@@ -10,8 +10,10 @@
 
 .input label {
   font-weight: bold;
-  color: var(--main-color);
+  /* color: var(--main-color); */
   font-size: 1.4rem;
+  color: white;
+  letter-spacing: 2px;
 }
 
 .input input {
@@ -47,14 +49,18 @@
   height: 2rem;
   padding: 0 1rem;
   border-radius: 5px;
-  background-color: var(--main-color);
-  color: white;
+  /* background-color: var(--main-color); */
+  background: linear-gradient(300deg, #e1d7d7, #ffffff, #d0c9c9);
+  /* color: white; */
+  color: rgb(10, 23, 48);
   outline: 0;
   border: 1px solid transparent;
   cursor: pointer;
+  box-shadow: 1px 1px 1px 1px rgba(17, 17, 17, 0.5);
 }
 .main button:hover,
 .main button:focus {
-  box-shadow: 3px 3px 5px rgba(10, 23, 48, 0.5);
-  background-color: rgb(26, 59, 119);
+  /* box-shadow: 3px 3px 5px rgba(16, 53, 91, 1); */
+  /* box-shadow: 1px 1px 1px 1px rgba(17, 17, 17, 0.5); */
+  background: rgb(177, 180, 187);
 }
