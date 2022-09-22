@@ -51,7 +51,7 @@ const Card = ({
         return poucasNuvensImg;
       case 'céu limpo':
         return ceuLimpoImg;
-      case 'nevoa':
+      case 'nevoa' || 'névoa':
         return mistImg;
       case 'neve':
         return neveImg;
