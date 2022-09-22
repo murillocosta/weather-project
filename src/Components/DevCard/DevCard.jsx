@@ -16,6 +16,9 @@ export const DevCard = props => {
         <a href={props.githubRef} target="_blank">
           {props.github}
         </a>
+        <a href={`mailto:${props.mailRef}`} target="_blank"> 
+          {props.mail}
+        </a>
       </div>
     </div>
   );

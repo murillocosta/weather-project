@@ -1,7 +1,6 @@
 import { DevCard } from "../Components/DevCard/DevCard";
 
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { AiOutlineMail, AiOutlineLinkedin, AiOutlineGithub } from "react-icons/ai";
 
 import imageLucas from '../assets/lucaspassos.jfif'
 import ImageMurillo from '../assets/murillocosta.jpg'
@@ -16,18 +15,22 @@ const Devs = () => {
             <DevCard
               image = {imageLucas}
               name = "Lucas Passos"
-              linkedin = {<FaLinkedin/>}
+              linkedin = {<AiOutlineLinkedin/>}
               linkedinRef = 'https://www.linkedin.com/in/lucas--passos/'
-              github = {<FaGithub/>}
+              github = {<AiOutlineGithub/>}
               githubRef = 'https://github.com/LucasBinho'
+              mail = {<AiOutlineMail/>}
+              mailRef='lucas_passos@msn.com'
             />
             <DevCard
              image = {ImageMurillo}
              name = "Murillo Costa"
-             linkedin = {<FaLinkedin/>}
+             linkedin = {<AiOutlineLinkedin/>}
              linkedinRef = 'https://www.linkedin.com/in/murillocosta/'
-             github = {<FaGithub/>}
+             github = {<AiOutlineGithub/>}
+             mail = {<AiOutlineMail/>}
              githubRef = 'https://github.com/murillocosta'
+             mailRef='murilloalcosta@gmail.com'
             />
         </div>
     </div>
