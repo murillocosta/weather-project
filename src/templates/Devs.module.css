@@ -1,0 +1,22 @@
+.devs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+.titulo {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.contatos {
+    display: flex
+}
+
