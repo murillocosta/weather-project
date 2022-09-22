@@ -1,3 +1,8 @@
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
+
+
 import styles from './Card.module.css';
 import sunriseIcon from '../../assets/sunrise.png';
 import sunsetIcon from '../../assets/sunset.png';
@@ -6,6 +11,7 @@ import humidityIcon from '../../assets/humidity.png';
 import celsiusIcon from '../../assets/celsius.png';
 import feelsLikeIcon from '../../assets/feels-like.png';
 
+//flaticon
 import nubladoImg from '../../assets/nublado.png';
 import nuvensDispersasImg from '../../assets/nuvens-dispersas.png';
 import ceuLimpoImg from '../../assets/ceu-limpo.png';
@@ -57,6 +63,8 @@ const Card = ({
         return neveImg;
       case 'chuva':
         return rainImg;
+      case 'chuva leve':
+        return rainImg
       case 'tempestade':
         return tempestadeImg;
       case 'chuva moderada':
@@ -128,89 +136,96 @@ const Card = ({
   // };
 
   return (
-    <section className={styles.Card}>
-      <h1>Agora em {city}:</h1>
-      <div className={styles.temp}>
-        <div>
-          <p>
-            Temperatura:{' '}
+    <section className={`animeLeft ${styles.cardContainer}`}>
+      <Tabs
+        defaultActiveKey="profile"
+        id="uncontrolled-tab-example"
+        className={`mb-3 ${styles.tab}`}
+      >
+        <Tab eventKey="De Agora" title="De Agora">
+         
+        </Tab>
+        <Tab eventKey="Em 3 Dias" title="Em 3 Dias">
+         
+        </Tab>
+
+      </Tabs>
+      <section className={styles.Card}>
+        <h1>Agora em {city}:</h1>
+        <div className={styles.temp}>
+          <div>
+            <p>
+              Temperatura:{' '}
+              <img
+                src={celsiusIcon}
+                alt="Temperatura"
+                title="Temperatura"
+                className={styles.icon}
+              />{' '}
+              <span>{Math.round(temp)}° C</span>
+            </p>
+          </div>
+          <div>
+            <p>
+              Umidade:{' '}
+              <img
+                src={humidityIcon}
+                alt="Umidade Relativa"
+                title="Umidade Relativa"
+                className={styles.icon}
+              />
+              <span>{humidity}% </span>
+            </p>
+          </div>
+          <div>
+            Sensação Térmica:{' '}
             <img
-              src={celsiusIcon}
-              alt="Temperatura"
-              title="Temperatura"
+              src={feelsLikeIcon}
+              alt="Sensação Térmica"
+              title="Sensação Térmica"
               className={styles.icon}
             />{' '}
-            <span>{Math.round(temp)}° C</span>
-          </p>
+            <span>{Math.round(feelsLike)}° C</span>
+          </div>
         </div>
-
-        <div>
+        <div className={styles.desc}>
           <p>
-            Umidade:{' '}
+            <span>{weatherCap(weatherDescription)}</span>
+          </p>
+          <img
+            src={renderWeatherImg(weatherDescription)}
+            alt={weatherDescription}
+            title={weatherCap(weatherDescription)}
+          />
+        </div>
+        <section className={styles.vento}>
+          <img src={windIcon} alt="Vento" title="Vento" />
+          <p>{windSpeed} m/s</p>
+        </section>
+        <section className={styles.sol}>
+          <div>
             <img
-              src={humidityIcon}
-              alt="Umidade Relativa"
-              title="Umidade Relativa"
-              className={styles.icon}
+              src={sunriseIcon}
+              alt="Nascer do Sol"
+              title="Nascer do Sol"
+              className={styles.sunIcons}
             />
-            <span>{humidity}% </span>
-          </p>
-        </div>
-
-        <div>
-          Sensação Térmica:{' '}
-          <img
-            src={feelsLikeIcon}
-            alt="Sensação Térmica"
-            title="Sensação Térmica"
-            className={styles.icon}
-          />{' '}
-          <span>{Math.round(feelsLike)}° C</span>
-        </div>
-      </div>
-
-      <div className={styles.desc}>
-        <p>
-          <span>{weatherCap(weatherDescription)}</span>
-        </p>
-
-        <img
-          src={renderWeatherImg(weatherDescription)}
-          alt={weatherDescription}
-          title={weatherCap(weatherDescription)}
-        />
-      </div>
-
-      <section className={styles.vento}>
-        <img src={windIcon} alt="Vento" title="Vento" />
-
-        <p>{windSpeed} m/s</p>
-      </section>
-
-      <section className={styles.sol}>
-        <div>
-          <img
-            src={sunriseIcon}
-            alt="Nascer do Sol"
-            title="Nascer do Sol"
-            className={styles.sunIcons}
-          />
-          <p>
-            <SimpleDateTime {...simpleDateOptions}>{sunrise}</SimpleDateTime>
-          </p>
-        </div>
-
-        <div>
-          <img
-            src={sunsetIcon}
-            alt="Pôr do Sol"
-            title="Pôr do Sol"
-            className={styles.sunIcons}
-          />
-          <p>
-            <SimpleDateTime {...simpleDateOptions}>{sunset}</SimpleDateTime>
-          </p>
-        </div>
+            <p>
+              <SimpleDateTime {...simpleDateOptions}>{sunrise}</SimpleDateTime>
+            </p>
+          </div>
+          <div>
+            <img
+              src={sunsetIcon}
+              alt="Pôr do Sol"
+              title="Pôr do Sol"
+              className={styles.sunIcons}
+            />
+            <p>
+              <SimpleDateTime {...simpleDateOptions}>{sunset}</SimpleDateTime>
+            </p>
+          </div>
+        </section>
       </section>
     </section>
   );

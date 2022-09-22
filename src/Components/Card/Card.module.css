@@ -1,12 +1,16 @@
+.cardContainer {
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5),
+    inset 3px 3px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 1px solid rgba(16, 23, 48, 0.7);
+  padding: 1rem;
+}
+
 .Card {
   width: 40rem;
   height: 25rem;
-  border: 1px solid rgba(16, 23, 48, 0.7);
-  border-radius: 10px;
   padding: 2rem;
-  box-shadow: 3px 3px 5px rgba(16, 23, 48, 0.5),
-    inset 3px 3px 5px rgba(0, 0, 0, 0.5);
-  background-color: whitesmoke;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 4rem 1fr 6rem;
@@ -52,7 +56,7 @@
   grid-area: vento;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .vento img {
@@ -100,4 +104,9 @@
 
 .sol div p {
   margin-top: 1rem;
+}
+
+.tab {
+  display: flex;
+  gap: 0.5rem;
 }
