@@ -10,6 +10,14 @@ const Home = () => {
   const [resultadoCidade, setResultadoCidade] = useState(null);
   const [error, setError] = useState(false);
 
+  // const dataTeste =
+  // fetch(
+  //   // 'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=f9d31ae794e0381cd7779d34934d61f8',
+  //   `https://api.openweathermap.org/data/2.5/forecast?q=Curitiba,br&appid=f9d31ae794e0381cd7779d34934d61f8&units=metric&lang=pt_br`,
+  // )
+  //   .then(resp => resp.json())
+  //   .then(json => console.log(json));
+
   const handleClick = () => {
     const fetchCidade = async () => {
       try {
@@ -18,7 +26,7 @@ const Home = () => {
         );
 
         const json = await data.json();
-
+        console.log(json);
         if (json.cod === '404') {
           throw new Error('Digite uma cidade válida!');
         }
@@ -35,15 +43,6 @@ const Home = () => {
       fetchCidade();
     }
   };
-
-  // feels_like: 25.44;
-  // grnd_level: 1015;
-  // humidity: 73;
-  // pressure: 1017;
-  // sea_level: 1017;
-  // temp: 24.98;
-  // temp_max: 24.98;
-  // temp_min: 24.98;
 
   return (
     <main className={styles.main}>

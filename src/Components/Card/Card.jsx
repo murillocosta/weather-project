@@ -1,8 +1,6 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-
-
 import styles from './Card.module.css';
 import sunriseIcon from '../../assets/sunrise.png';
 import sunsetIcon from '../../assets/sunset.png';
@@ -33,13 +31,16 @@ const Card = ({
   windSpeed,
   sunrise,
   sunset,
-  weatherIconId,
   city,
 }) => {
-  const simpleDateOptions = {
+  const simpleSunDateOptions = {
     showDate: '0',
     timeSeparator: ':',
   };
+
+  // const dateOptions = {
+  //   show
+  // }
 
   const weatherCap = weatherDescription => {
     return (
@@ -64,7 +65,7 @@ const Card = ({
       case 'chuva':
         return rainImg;
       case 'chuva leve':
-        return rainImg
+        return rainImg;
       case 'tempestade':
         return tempestadeImg;
       case 'chuva moderada':
@@ -74,67 +75,6 @@ const Card = ({
     }
   };
 
-  //TODO
-  //
-  // const windDirection = deg => {
-  //   if (deg < 5 && deg >= 355)
-  //     return (
-  //       <WiDirectionUp
-  //         title="Direção do vento: Norte"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 5 && deg < 85)
-  //     return (
-  //       <WiDirectionUpRight
-  //         title="Direção do vento: Nordeste"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 85 && deg < 95)
-  //     return (
-  //       <WiDirectionRight
-  //         title="Direção do vento: Leste"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 95 && deg < 175)
-  //     return (
-  //       <WiDirectionDownRight
-  //         title="Direção do vento: Sudeste"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 175 && deg < 185)
-  //     return (
-  //       <WiDirectionDown
-  //         title="Direção do vento: Sul"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 185 && deg < 265)
-  //     return (
-  //       <WiDirectionUpRight
-  //         title="Direção do vento: Sudoeste"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 265 && deg < 275)
-  //     return (
-  //       <WiDirectionLeft
-  //         title="Direção do vento: Oeste"
-  //         className={styles.direction}
-  //       />
-  //     );
-  //   if (deg >= 270 && deg < 355)
-  //     return (
-  //       <WiDirectionUpLeft
-  //         title="Direção do vento: Noroeste"
-  //         className={styles.direction}
-  //       />
-  //     );
-  // };
-
   return (
     <section className={`animeLeft ${styles.cardContainer}`}>
       <Tabs
@@ -142,13 +82,9 @@ const Card = ({
         id="uncontrolled-tab-example"
         className={`mb-3 ${styles.tab}`}
       >
-        <Tab eventKey="De Agora" title="De Agora">
-         
-        </Tab>
-        <Tab eventKey="Em 3 Dias" title="Em 3 Dias">
-         
-        </Tab>
-
+        <Tab eventKey="De Agora" title="De Agora"></Tab>
+        <Tab eventKey="Amanhã" title="Amanhã"></Tab>
+        <Tab eventKey="Em 3 Dias" title="Em 3 Dias"></Tab>
       </Tabs>
       <section className={styles.Card}>
         <h1>Agora em {city}:</h1>
@@ -211,7 +147,7 @@ const Card = ({
               className={styles.sunIcons}
             />
             <p>
-              <SimpleDateTime {...simpleDateOptions}>{sunrise}</SimpleDateTime>
+              <SimpleDateTime {...simpleSunDateOptions}>{sunrise}</SimpleDateTime>
             </p>
           </div>
           <div>
@@ -222,7 +158,7 @@ const Card = ({
               className={styles.sunIcons}
             />
             <p>
-              <SimpleDateTime {...simpleDateOptions}>{sunset}</SimpleDateTime>
+              <SimpleDateTime {...simpleSunDateOptions}>{sunset}</SimpleDateTime>
             </p>
           </div>
         </section>
