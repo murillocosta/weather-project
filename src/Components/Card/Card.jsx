@@ -21,6 +21,9 @@ import tempestadeImg from '../../assets/tempestade.png';
 import chuvaModeradaImg from '../../assets/chuva-moderada.png';
 
 import SimpleDateTime from 'react-simple-timestamp-to-date';
+import { useState } from 'react';
+import { json } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Card = ({
   temp,
@@ -32,15 +35,92 @@ const Card = ({
   sunrise,
   sunset,
   city,
+  resultadoProxDias,
 }) => {
+  const resp = {
+    temp,
+    humidity,
+    feelsLike,
+    weatherDescription,
+    windDeg,
+    windSpeed,
+    sunrise,
+    sunset,
+    city,
+  };
+
+  const [cardContent, setCardContent] = useState({ ...resp });
+
   const simpleSunDateOptions = {
     showDate: '0',
     timeSeparator: ':',
   };
 
-  // const dateOptions = {
-  //   show
-  // }
+  const handleSelect = eventKey => {
+    const proxDias = resultadoProxDias.list.filter(el =>
+      el.dt_txt.includes('12:00:00'),
+    );
+
+    console.log('prox', proxDias);
+
+    if (eventKey === '1') {
+      setCardContent({ ...resp });
+    }
+    if (eventKey === '2') {
+      proxDias.length === 3
+        ? setCardContent({
+            temp: proxDias[0].main.temp,
+            humidity: proxDias[0].main.humidity,
+            feelsLike: proxDias[0].main.feels_like,
+            weatherDescription: proxDias[0].weather[0].description,
+            windDeg: proxDias[0].wind.deg,
+            windSpeed: proxDias[0].wind.speed,
+            sunrise: proxDias[0].sys.sunrise,
+            sunset: proxDias[0].sys.sunset,
+          })
+        : setCardContent({
+            temp: proxDias[1].main.temp,
+            humidity: proxDias[1].main.humidity,
+            feelsLike: proxDias[1].main.feels_like,
+            weatherDescription: proxDias[1].weather[0].description,
+            windDeg: proxDias[1].wind.deg,
+            windSpeed: proxDias[1].wind.speed,
+            sunrise: proxDias[1].sys.sunrise,
+            sunset: proxDias[1].sys.sunset,
+          });
+    }
+    if (eventKey === '3') {
+      proxDias.length === 3
+        ? setCardContent({
+            temp: proxDias[1].main.temp,
+            humidity: proxDias[1].main.humidity,
+            feelsLike: proxDias[1].main.feels_like,
+            weatherDescription: proxDias[1].weather[0].description,
+            windDeg: proxDias[1].wind.deg,
+            windSpeed: proxDias[1].wind.speed,
+            sunrise: proxDias[1].sys.sunrise,
+            sunset: proxDias[1].sys.sunset,
+          })
+        : setCardContent({
+            temp: proxDias[2].main.temp,
+            humidity: proxDias[2].main.humidity,
+            feelsLike: proxDias[2].main.feels_like,
+            weatherDescription: proxDias[2].weather[0].description,
+            windDeg: proxDias[2].wind.deg,
+            windSpeed: proxDias[2].wind.speed,
+            sunrise: proxDias[2].sys.sunrise,
+            sunset: proxDias[2].sys.sunset,
+          });
+    }
+  };
+
+  useEffect(() => {
+    console.log(cardContent);
+  }, [cardContent]);
+
+  // const proxDias = jsonProx.list.filter(el => el.dt_txt.includes('12:00:00'));
+
+  // console.log(proxDias);
 
   const weatherCap = weatherDescription => {
     return (
@@ -78,13 +158,14 @@ const Card = ({
   return (
     <section className={`animeLeft ${styles.cardContainer}`}>
       <Tabs
-        defaultActiveKey="profile"
         id="uncontrolled-tab-example"
         className={`mb-3 ${styles.tab}`}
+        onSelect={eventKey => handleSelect(eventKey)}
+        defaultActiveKey={1}
       >
-        <Tab eventKey="De Agora" title="De Agora"></Tab>
-        <Tab eventKey="Amanhã" title="Amanhã"></Tab>
-        <Tab eventKey="Em 3 Dias" title="Em 3 Dias"></Tab>
+        <Tab eventKey={'1'} title="De Agora"></Tab>
+        <Tab eventKey={'2'} title="Amanhã"></Tab>
+        <Tab eventKey={'3'} title="Em 2 Dias"></Tab>
       </Tabs>
       <section className={styles.Card}>
         <h1>Agora em {city}:</h1>
@@ -98,7 +179,7 @@ const Card = ({
                 title="Temperatura"
                 className={styles.icon}
               />{' '}
-              <span>{Math.round(temp)}° C</span>
+              <span>{Math.round(cardContent.temp)}° C</span>
             </p>
           </div>
           <div>
@@ -110,7 +191,7 @@ const Card = ({
                 title="Umidade Relativa"
                 className={styles.icon}
               />
-              <span>{humidity}% </span>
+              <span>{cardContent.humidity}% </span>
             </p>
           </div>
           <div>
@@ -121,7 +202,7 @@ const Card = ({
               title="Sensação Térmica"
               className={styles.icon}
             />{' '}
-            <span>{Math.round(feelsLike)}° C</span>
+            <span>{Math.round(cardContent.feelsLike)}° C</span>
           </div>
         </div>
         <div className={styles.desc}>
@@ -136,32 +217,40 @@ const Card = ({
         </div>
         <section className={styles.vento}>
           <img src={windIcon} alt="Vento" title="Vento" />
-          <p>{windSpeed} m/s</p>
+          <p>{cardContent.windSpeed} m/s</p>
         </section>
-        <section className={styles.sol}>
-          <div>
-            <img
-              src={sunriseIcon}
-              alt="Nascer do Sol"
-              title="Nascer do Sol"
-              className={styles.sunIcons}
-            />
-            <p>
-              <SimpleDateTime {...simpleSunDateOptions}>{sunrise}</SimpleDateTime>
-            </p>
-          </div>
-          <div>
-            <img
-              src={sunsetIcon}
-              alt="Pôr do Sol"
-              title="Pôr do Sol"
-              className={styles.sunIcons}
-            />
-            <p>
-              <SimpleDateTime {...simpleSunDateOptions}>{sunset}</SimpleDateTime>
-            </p>
-          </div>
-        </section>
+        {cardContent.sunrise ? (
+          <section className={styles.sol}>
+            <div>
+              <img
+                src={sunriseIcon}
+                alt="Nascer do Sol"
+                title="Nascer do Sol"
+                className={styles.sunIcons}
+              />
+              <p>
+                <SimpleDateTime {...simpleSunDateOptions}>
+                  {cardContent.sunrise}
+                </SimpleDateTime>
+              </p>
+            </div>
+            <div>
+              <img
+                src={sunsetIcon}
+                alt="Pôr do Sol"
+                title="Pôr do Sol"
+                className={styles.sunIcons}
+              />
+              <p>
+                <SimpleDateTime {...simpleSunDateOptions}>
+                  {cardContent.sunset}
+                </SimpleDateTime>
+              </p>
+            </div>
+          </section>
+        ) : (
+          ''
+        )}
       </section>
     </section>
   );
