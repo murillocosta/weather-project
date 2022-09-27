@@ -29,3 +29,19 @@
   width: 5rem;
   height: 5rem;
 }
+
+
+@media (max-width: 500px) {
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .logo {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .header > a {
+    font-size: 0.875rem;
+  }
+}

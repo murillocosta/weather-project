@@ -110,3 +110,18 @@
   display: flex;
   gap: 0.5rem;
 }
+
+@media (max-width: 690px) {
+  .Card {
+    width: 25rem;
+    height: 20rem;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .Card {
+    width: 22rem;
+    height: 25rem;
+  }
+}

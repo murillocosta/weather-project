@@ -1,7 +1,12 @@
+//3rd party libs
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import SimpleDateTime from 'react-simple-timestamp-to-date';
 
+//styles
 import styles from './Card.module.css';
+
+//icons
 import sunriseIcon from '../../assets/sunrise.png';
 import sunsetIcon from '../../assets/sunset.png';
 import windIcon from '../../assets/wind.png';
@@ -9,21 +14,13 @@ import humidityIcon from '../../assets/humidity.png';
 import celsiusIcon from '../../assets/celsius.png';
 import feelsLikeIcon from '../../assets/feels-like.png';
 
-//flaticon
-import nubladoImg from '../../assets/nublado.png';
-import nuvensDispersasImg from '../../assets/nuvens-dispersas.png';
-import ceuLimpoImg from '../../assets/ceu-limpo.png';
-import poucasNuvensImg from '../../assets/poucas-nuvens.png';
-import mistImg from '../../assets/mist.png';
-import neveImg from '../../assets/neve.png';
-import rainImg from '../../assets/rain.png';
-import tempestadeImg from '../../assets/tempestade.png';
-import chuvaModeradaImg from '../../assets/chuva-moderada.png';
+//helpers
+import renderWeatherImg from '../../Helpers/renderWeatherImg';
+import weatherCap from '../../Helpers/weatherCap';
+import contentGenerator from '../../Helpers/contentGenerator';
 
-import SimpleDateTime from 'react-simple-timestamp-to-date';
+//hooks
 import { useState } from 'react';
-import { json } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Card = ({
   temp,
@@ -50,6 +47,7 @@ const Card = ({
   };
 
   const [cardContent, setCardContent] = useState({ ...resp });
+  const [title, setTitle] = useState('Agora em:');
 
   const simpleSunDateOptions = {
     showDate: '0',
@@ -61,97 +59,18 @@ const Card = ({
       el.dt_txt.includes('12:00:00'),
     );
 
-    console.log('prox', proxDias);
-
     if (eventKey === '1') {
       setCardContent({ ...resp });
     }
     if (eventKey === '2') {
       proxDias.length === 3
-        ? setCardContent({
-            temp: proxDias[0].main.temp,
-            humidity: proxDias[0].main.humidity,
-            feelsLike: proxDias[0].main.feels_like,
-            weatherDescription: proxDias[0].weather[0].description,
-            windDeg: proxDias[0].wind.deg,
-            windSpeed: proxDias[0].wind.speed,
-            sunrise: proxDias[0].sys.sunrise,
-            sunset: proxDias[0].sys.sunset,
-          })
-        : setCardContent({
-            temp: proxDias[1].main.temp,
-            humidity: proxDias[1].main.humidity,
-            feelsLike: proxDias[1].main.feels_like,
-            weatherDescription: proxDias[1].weather[0].description,
-            windDeg: proxDias[1].wind.deg,
-            windSpeed: proxDias[1].wind.speed,
-            sunrise: proxDias[1].sys.sunrise,
-            sunset: proxDias[1].sys.sunset,
-          });
+        ? setCardContent(contentGenerator(proxDias, 0))
+        : setCardContent(contentGenerator(proxDias, 1));
     }
     if (eventKey === '3') {
       proxDias.length === 3
-        ? setCardContent({
-            temp: proxDias[1].main.temp,
-            humidity: proxDias[1].main.humidity,
-            feelsLike: proxDias[1].main.feels_like,
-            weatherDescription: proxDias[1].weather[0].description,
-            windDeg: proxDias[1].wind.deg,
-            windSpeed: proxDias[1].wind.speed,
-            sunrise: proxDias[1].sys.sunrise,
-            sunset: proxDias[1].sys.sunset,
-          })
-        : setCardContent({
-            temp: proxDias[2].main.temp,
-            humidity: proxDias[2].main.humidity,
-            feelsLike: proxDias[2].main.feels_like,
-            weatherDescription: proxDias[2].weather[0].description,
-            windDeg: proxDias[2].wind.deg,
-            windSpeed: proxDias[2].wind.speed,
-            sunrise: proxDias[2].sys.sunrise,
-            sunset: proxDias[2].sys.sunset,
-          });
-    }
-  };
-
-  useEffect(() => {
-    console.log(cardContent);
-  }, [cardContent]);
-
-  // const proxDias = jsonProx.list.filter(el => el.dt_txt.includes('12:00:00'));
-
-  // console.log(proxDias);
-
-  const weatherCap = weatherDescription => {
-    return (
-      weatherDescription.charAt(0).toUpperCase() + weatherDescription.slice(1)
-    );
-  };
-
-  const renderWeatherImg = weatherDescription => {
-    switch (weatherDescription) {
-      case 'nublado':
-        return nubladoImg;
-      case 'nuvens dispersas':
-        return nuvensDispersasImg;
-      case 'algumas nuvens':
-        return poucasNuvensImg;
-      case 'céu limpo':
-        return ceuLimpoImg;
-      case 'nevoa' || 'névoa':
-        return mistImg;
-      case 'neve':
-        return neveImg;
-      case 'chuva':
-        return rainImg;
-      case 'chuva leve':
-        return rainImg;
-      case 'tempestade':
-        return tempestadeImg;
-      case 'chuva moderada':
-        return chuvaModeradaImg;
-      default:
-        break;
+        ? setCardContent(contentGenerator(proxDias, 1))
+        : setCardContent(contentGenerator(proxDias, 2));
     }
   };
 
@@ -168,7 +87,7 @@ const Card = ({
         <Tab eventKey={'3'} title="Em 2 Dias"></Tab>
       </Tabs>
       <section className={styles.Card}>
-        <h1>Agora em {city}:</h1>
+        <h1>{city}:</h1>
         <div className={styles.temp}>
           <div>
             <p>

@@ -75,3 +75,17 @@
 .error {
   color: rgb(218, 18, 18);
 }
+
+@media (max-width: 500px) {
+  .input input {
+    width: 10rem;
+    
+  }
+  .input label {
+    font-size: 1rem;    
+  }
+
+  .input div button {
+    width: 5.5rem;
+  }
+}
