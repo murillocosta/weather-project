@@ -6,7 +6,7 @@ const fetchResultados = async (
 ) => {
   try {
     const data = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${cidade},br&APPID=${
+      `https://api.openweathermap.org/data/2.5/weather?q=${cidade},br&APPID=${
         import.meta.env.VITE_API_KEY
       }&units=metric&lang=pt_br`,
     );
