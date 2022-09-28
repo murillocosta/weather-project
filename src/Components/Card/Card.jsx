@@ -113,7 +113,7 @@ const Card = ({
               <span>{cardContent.humidity}% </span>
             </p>
           </div>
-          <div>
+          <div className={styles.feelsLike}>
             Sensação Térmica:{' '}
             <img
               src={feelsLikeIcon}
@@ -126,12 +126,12 @@ const Card = ({
         </div>
         <div className={styles.desc}>
           <p>
-            <span>{weatherCap(weatherDescription)}</span>
+            <span>{cardContent.weatherDescription}</span>
           </p>
           <img
-            src={renderWeatherImg(weatherDescription)}
-            alt={weatherDescription}
-            title={weatherCap(weatherDescription)}
+            src={renderWeatherImg(cardContent.weatherDescription)}
+            alt={cardContent.weatherDescription}
+            title={cardContent.weatherDescription}
           />
         </div>
         <section className={styles.vento}>

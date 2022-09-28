@@ -114,7 +114,16 @@
 @media (max-width: 690px) {
   .Card {
     width: 25rem;
-    height: 20rem;
+    height: 25rem;
+    font-size: 0.8rem;
+  }
+
+  .Card .feelsLike {
+   width: 140px;
+  }
+
+  img {
+    width: 100px;
   }
 }
 
@@ -123,5 +132,19 @@
   .Card {
     width: 22rem;
     height: 25rem;
+    font-size: 0.7rem;
   }
+
+  .Card .feelsLike {
+    width: 130px;
+   }
+
+   .sol img {
+    width: 40px;
+    height: 40px;
+   }
+
+   .sol p {
+    font-size: 0.8rem;
+   }
 }
