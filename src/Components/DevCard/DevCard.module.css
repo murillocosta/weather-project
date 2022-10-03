@@ -1,12 +1,10 @@
 .devCard {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 2rem;
+    justify-content: center;
     height: 25rem;
-    padding: 1rem;
+    margin: 2rem;
     border-radius: 20px;
     overflow: hidden;
     transition: 0.5s;
@@ -18,8 +16,7 @@
 }
 
 .devImage {
-    width: 200px;
-    transition: 0.5s;
+    width: 12.5rem;
     border-radius: 100%;
 }
 
@@ -33,16 +30,63 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px;  
+    padding: 1.563rem;  
  }
  
  .devIcons svg {
      color: rgb(211, 197, 235);  
-     width: 4em;
-     height: 2em;
+     width: 4rem;
+     height: 2rem;
  }
 
  .devIcons svg:hover {
     transform: scale(1.5);
     transition: 0.5s;
  }
+
+
+ @media (max-width: 600px) {
+.devCard {
+    height: 18rem;
+    width: 13rem;
+    margin: 1rem;
+}
+.devImage{
+    width: 5rem;
+}
+
+}
+
+@media (max-width: 480px) {
+    .devCard {
+        height: 18rem;
+        width: 10rem;
+        margin: 1rem;
+    }
+    .devImage{
+        width: 5rem;
+    }
+
+    .devIcons svg {
+        width: 3rem;
+        height: 2rem;
+        padding: 0.3rem;
+    }
+}
+
+@media (max-width: 370px) {
+    .devCard {
+        height: 16rem;
+        width: 8rem;
+        margin: 1rem;
+    }
+    .devImage{
+        width: 4rem;
+    }
+
+    .devIcons svg {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.3rem;
+    }
+}
