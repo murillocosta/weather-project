@@ -1,6 +1,3 @@
-
-
-
 const fetchResultados = async (
   cidade,
   citySetter,
@@ -11,13 +8,13 @@ const fetchResultados = async (
     const data = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cidade},br&APPID=${
         import.meta.env.VITE_API_KEY
-        }&units=metric&lang=pt_br`,
+      }&units=metric&lang=pt_br`,
     );
 
     const dataProx = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${cidade},br&APPID=${
         import.meta.env.VITE_API_KEY
-        }&units=metric&lang=pt_br&cnt=24`,
+      }&units=metric&lang=pt_br&cnt=24`,
     );
 
     const json = await data.json();

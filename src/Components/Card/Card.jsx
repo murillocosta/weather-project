@@ -47,7 +47,6 @@ const Card = ({
   };
 
   const [cardContent, setCardContent] = useState({ ...resp });
-  const [title, setTitle] = useState('Agora em:');
 
   const simpleSunDateOptions = {
     showDate: '0',
@@ -126,7 +125,7 @@ const Card = ({
         </div>
         <div className={styles.desc}>
           <p>
-            <span>{cardContent.weatherDescription}</span>
+            <span>{weatherCap(cardContent.weatherDescription)}</span>
           </p>
           <img
             src={renderWeatherImg(cardContent.weatherDescription)}
